@@ -4,7 +4,7 @@
 import typing
 
 
-def to_kv(k: str, v: typing.Union[int, float]) -> tuple:
+def to_kv(k: str, v: typing.Union[int, float]) -> typing.Tuple[str, float]:
     """Return tuple of k and (v squred).
 
     Returns:
