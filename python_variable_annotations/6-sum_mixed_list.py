@@ -4,7 +4,7 @@
 import typing
 
 
-def sum_mixed_list(mxd_lst: typing.List[int | float]) -> float:
+def sum_mixed_list(mxd_lst: typing.List[typing.Union[int, float]]) -> float:
     """Sum all elements from a list of ints and floats.
 
     Returns:
