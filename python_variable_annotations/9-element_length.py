@@ -6,7 +6,7 @@ import typing
 
 def element_length(
     lst: typing.Iterable[typing.Sequence],
-) -> typing.List[typing.Tuple]:
+) -> typing.List[typing.Tuple[typing.Sequence, int]]:
     """Find the length of each element in a list.
 
     Returns:
