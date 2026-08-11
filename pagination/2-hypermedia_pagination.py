@@ -51,8 +51,8 @@ class Server:
 
         """
         cur_page = self.get_page(page, page_size)
-        prev_page = self.get_page(page, page_size)
-        next_page = self.get_page(page, page_size)
+        prev_page = self.get_page(page - 1, page_size)
+        next_page = self.get_page(page + 1, page_size)
         return {
             "page_size": page_size,
             "page": page,
