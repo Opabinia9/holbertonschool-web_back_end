@@ -1,5 +1,3 @@
-const readline = require('readline-sync');
-
 console.log('Welcome to Holberton School, what is your name?');
 
 process.stdin.on('data', (data) => {
