@@ -28,7 +28,7 @@ function countStudents(path) {
       rows[0].reduce(
         /** @type {CSVToDict} */
         (dict, header, col) => {
-          dict[header] = row[col];
+          dict[header.trim()] = row[col].trim();
           return dict;
         },
         {},
@@ -45,8 +45,8 @@ function countStudents(path) {
     const fields = students.reduce(
       /** @type {CategorizByField} */
       (acc, student) => {
-        acc[student.field] ??= [];
-        acc[student.field].push(student);
+        acc[student.field.trim()] ??= [];
+        acc[student.field.trim()].push(student);
         return acc;
       },
       {},
