@@ -14,6 +14,7 @@ function countStudents(path) {
     const rows = data
       .trim()
       .split('\n')
+      .filter((value) => value !== '')
       .map((row) => row.split(','));
 
     /**
