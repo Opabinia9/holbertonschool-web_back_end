@@ -4,10 +4,8 @@
 function countStudents(path) {
   const fs = require('node:fs');
 
-  fs.readFile(path, 'utf8', (err, data) => {
-    if (err) {
-      throw new Error('Cannot load the database');
-    }
+  try {
+    const data = fs.readFileSync(path, 'utf8');
 
     /**
      * parse cvs data into a 2d array of strings
@@ -65,7 +63,9 @@ function countStudents(path) {
           .join(', ')}`,
       );
     }
-  });
+  } catch (error) {
+    throw new Error('Cannot load the database');
+  }
 }
 
 module.exports = countStudents;
