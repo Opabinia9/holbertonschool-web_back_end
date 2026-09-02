@@ -43,7 +43,9 @@ function countStudents(path) {
     const fields = students.reduce(
       /** @type {CategorizByField} */
       (acc, student) => {
-        acc[student.field] = acc[student.field] !== undefined ? acc[student.field] : [];
+        if (!acc[student.field]) {
+          acc[student.field] = [];
+        }
         acc[student.field].push(student);
         return acc;
       },
