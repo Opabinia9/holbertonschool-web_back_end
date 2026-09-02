@@ -14,7 +14,6 @@ function countStudents(path) {
     const rows = data
       .trim()
       .split('\n')
-      .filter((value) => value !== '')
       .map((row) => row.split(','));
 
     /**
@@ -25,16 +24,14 @@ function countStudents(path) {
      * @returns {Object.<string, string>}
      */
     /** @type {Array.<Object.<string, string>>} */
-    const students = rows.slice(1).map((row) =>
-      rows[0].reduce(
-        /** @type {CSVToDict} */
-        (dict, header, col) => {
-          dict[header.trim()] = row[col].trim();
-          return dict;
-        },
-        {},
-      ),
-    );
+    const students = rows.slice(1).map((row) => rows[0].reduce(
+      /** @type {CSVToDict} */
+      (dict, header, col) => {
+        Object.assign(dict, { [header]: row[col] });
+        return dict;
+      },
+      {},
+    ));
 
     /**
      * @callback CategorizByField
@@ -46,8 +43,8 @@ function countStudents(path) {
     const fields = students.reduce(
       /** @type {CategorizByField} */
       (acc, student) => {
-        acc[student.field.trim()] ??= [];
-        acc[student.field.trim()].push(student);
+        acc[student.field] = acc[student.field] !== undefined ? acc[student.field] : [];
+        acc[student.field].push(student);
         return acc;
       },
       {},
@@ -55,12 +52,10 @@ function countStudents(path) {
 
     console.log(`Number of students: ${students.length}`);
 
-    for (let x of Object.keys(fields)) {
+    for (const x of Object.keys(fields)) {
       console.log(
         `Number of students in ${x}: ${fields[x].length}. List: ${fields[x]
-          .map((row) => {
-            return row['firstname'];
-          })
+          .map((row) => row.firstname)
           .join(', ')}`,
       );
     }
