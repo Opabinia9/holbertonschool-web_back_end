@@ -1,9 +1,9 @@
+const fs = require('node:fs');
+
 /**
  * @param {string} path
  */
 function countStudents(path) {
-  const fs = require('node:fs');
-
   try {
     const data = fs.readFileSync(path, 'utf8');
 
